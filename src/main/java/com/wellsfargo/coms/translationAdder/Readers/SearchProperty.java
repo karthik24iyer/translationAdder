@@ -34,8 +34,7 @@ public class SearchProperty {
      	try {
 	        if (currentTransFile.isFile()) {
 	        	//System.out.println(propertyName + "=" + props.getProperty(propertyName));
-	        	//System.out.println(props.propertyNames());
-	        
+	        	//System.out.println(props.propertyNames());	        
 	        	BufferedReader br = new BufferedReader(new InputStreamReader(
             	        new FileInputStream(filePath+"\\"+ fileName), "UTF-8"));
 	            String s,in=""; 
@@ -50,10 +49,17 @@ public class SearchProperty {
 	            	if(in.contains(propertyName+" = ")) {oldTranslation = in.split(propertyName+" = ")[1].split("\n")[0]; }
 	            	else if(in.contains(propertyName+" =")){oldTranslation = in.split(propertyName+" =")[1].split("\n")[0]; }
 	            	else {oldTranslation = in.split(propertyName+"=")[1].split("\n")[0]; }
-	                System.out.println("-----" + propertyName+"="+oldTranslation + "----- already present in "+ currentTransFile.getName());
-	                //FileWriter out = new FileWriter(filePath+fileName);
+	            	
+	            	
 	                BufferedWriter out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(filePath+fileName), "UTF-8"));
 		            if(!disablePrompt) {
+		            	if(oldTranslation.equals(newTranslation)) {
+		            		System.out.println("-----" + propertyName+"="+oldTranslation + "----- already present in "+ currentTransFile.getName()+" with same translation\n");	
+		            	}
+		            	else {
+		            		System.out.println("-----" + propertyName+"="+oldTranslation + "-----(old) already present in "+ currentTransFile.getName()+"\n");
+		            	}
+		            	
 	                	Scanner myIn = new Scanner(System.in);
 		                System.out.println("Do you want to replace it with -----" + propertyName+"="+newTranslation + "-----  ? (y/n) : ");
 		                String decide = myIn.nextLine();
@@ -67,7 +73,14 @@ public class SearchProperty {
 		                }
 		            }
 		            else {
-		            	in = in.replace(oldTranslation, newTranslation);
+		            	if(oldTranslation.equals(newTranslation)) {
+		            		System.out.println("-----" + propertyName+"="+oldTranslation + "----- already present in "+ currentTransFile.getName()+" with same translation. Skipping... \n");		            		
+		            	}
+		            	else {	
+		            		System.out.println("-----" + propertyName+"="+oldTranslation + "-----(old) already present in "+ currentTransFile.getName()+
+		            				", replacing it with new -----"+ propertyName+"="+newTranslation + "-----\n");
+		            		in = in.replace(oldTranslation, newTranslation);
+		            	}
 		            }
 	                out.write(in);
 	                out.flush();
@@ -76,7 +89,7 @@ public class SearchProperty {
 	            }
 	            
 	            if(!done) {
-	            	System.out.println("Writing New -----" + propertyName+"="+newTranslation + "----- in "+ currentTransFile.getName());
+	            	System.out.println("Writing New -----" + propertyName+"="+newTranslation + "----- in "+ currentTransFile.getName()+"\n");
 	            	BufferedWriter out = new BufferedWriter(new FileWriter(filePath+fileName, true)); 
         			out.write(propertyName+"="+newTranslation+"\n"); 
         			out.close(); 
