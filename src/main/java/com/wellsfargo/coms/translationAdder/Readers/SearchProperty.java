@@ -14,14 +14,14 @@ import java.util.Locale;
 import java.util.Properties;
 import java.util.ResourceBundle;
 import java.util.Scanner;
-
+import com.wellsfargo.coms.translationAdder.Misc.OrderedProperties;
 
 public class SearchProperty {
     
 	public SearchProperty(String fileName, String filePath, String propertyName, String newTranslation) {
-		ResourceBundle rb = ResourceBundle.getBundle("resources/config");
+		ResourceBundle rb = ResourceBundle.getBundle("config");
         boolean disablePrompt = Boolean.valueOf(rb.getString("disablePrompt"));
-        Properties props = new Properties();
+        Properties props = new OrderedProperties();
 		boolean done=false;
 		File currentTransFile=new File(filePath+"\\"+ fileName);
 		System.out.println(fileName+ " found at: " + filePath+fileName);
@@ -48,6 +48,7 @@ public class SearchProperty {
 		                }
 		            }
 		            else {
+		            	System.out.println("Replacing existing property with -----" + propertyName+"="+newTranslation + "-----\n");
 		            	props.put(propertyName, newTranslation);
                 		props.store(out, "");   
 		            }

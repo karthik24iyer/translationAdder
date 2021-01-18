@@ -9,7 +9,7 @@ public class SearchFile {
 	
 	private SearchText getFileName = new SearchText();
 	private String language;
-	ResourceBundle rb = ResourceBundle.getBundle("resources/config");
+	ResourceBundle rb = ResourceBundle.getBundle("config");
     private String folderPath = rb.getString("rootLocation");
 	
 	public String runFileReader(String fileName, String currentLang) {

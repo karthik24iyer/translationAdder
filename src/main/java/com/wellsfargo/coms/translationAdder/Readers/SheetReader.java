@@ -12,7 +12,7 @@ import org.apache.poi.ss.usermodel.FormulaEvaluator;
 import org.apache.poi.ss.usermodel.Row;  
 
 public class SheetReader {  
-	ResourceBundle rb = ResourceBundle.getBundle("resources/config");
+	ResourceBundle rb = ResourceBundle.getBundle("config");
     private String location = rb.getString("xcelLocation");
     private int count = 0, i=0;
     private String[] rowHeader = new String[16];

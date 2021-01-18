@@ -30,7 +30,7 @@ public class SearchText {
         String fileName, propertyName, fullFilePath;
         static int lineNumber=0;
         private String existingFilesForCurrentText, ignoreSearchForFiles;
-        ResourceBundle rb = ResourceBundle.getBundle("resources/config");
+        ResourceBundle rb = ResourceBundle.getBundle("config");
         private String folderPath = rb.getString("rootLocation");
         private String ignoreFilesPath = rb.getString("ignoreFilesPath");
         //ResourceBundle rbForFilesIgnore = ResourceBundle.getBundle("resources/ignoreDoNotEdit");
@@ -73,7 +73,7 @@ public class SearchText {
 	                    //System.out.println(file.getName());
 	                    fileName=file.getName();
 	                    if(fileName.equals("WriteExcelDemo.java") || existingFilesForCurrentText.contains(fileName) 
-	                    		|| ignoreSearchForFiles.contains(fileName)) { continue; }
+	                    		|| ignoreSearchForFiles.contains(fileName) || !fileName.contains(".properties")) { continue; }
 	                    try {
 	                    	int wordCount=0;
 	                        FileReader reader = new FileReader(filePath);
