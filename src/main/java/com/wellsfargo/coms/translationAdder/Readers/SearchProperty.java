@@ -11,7 +11,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
+import java.nio.charset.CharsetEncoder;
 import java.util.List;
 import java.util.Locale;
 import java.util.Properties;
@@ -20,21 +22,22 @@ import java.util.Scanner;
 
 import org.apache.commons.io.FileUtils;
 
+import com.wellsfargo.coms.translationAdder.Misc.UnicodeEncoding;
+
 
 public class SearchProperty {
     
 	public SearchProperty(String fileName, String filePath, String propertyName, String newTranslation) {
+		
+		newTranslation= (new UnicodeEncoding()).getEncodedString(newTranslation);
 		ResourceBundle rb = ResourceBundle.getBundle("config");
         boolean disablePrompt = Boolean.valueOf(rb.getString("disablePrompt"));
-        Properties props = new Properties();
 		boolean done=false;
 		String oldTranslation;
 		File currentTransFile=new File(filePath+"\\"+ fileName);
 		System.out.println(fileName+ " found at: " + filePath+fileName);
      	try {
-	        if (currentTransFile.isFile()) {
-	        	//System.out.println(propertyName + "=" + props.getProperty(propertyName));
-	        	//System.out.println(props.propertyNames());	        
+	        if (currentTransFile.isFile()) {        
 	        	BufferedReader br = new BufferedReader(new InputStreamReader(
             	        new FileInputStream(filePath+"\\"+ fileName), "UTF-8"));
 	            String s,in=""; 
@@ -91,7 +94,7 @@ public class SearchProperty {
 	            if(!done) {
 	            	System.out.println("Writing New -----" + propertyName+"="+newTranslation + "----- in "+ currentTransFile.getName()+"\n");
 	            	BufferedWriter out = new BufferedWriter(new FileWriter(filePath+fileName, true)); 
-        			out.write(propertyName+"="+newTranslation+"\n"); 
+        			out.write("\n"+propertyName+"="+newTranslation+"\n"); 
         			out.close(); 
 	            }		
 	        }
@@ -100,5 +103,5 @@ public class SearchProperty {
         	//System.out.print("Cant find " + propertyName);
             e.printStackTrace();
         }
-    }	
+    }
 }    

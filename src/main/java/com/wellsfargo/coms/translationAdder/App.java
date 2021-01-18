@@ -18,7 +18,6 @@ public class App
         	// Reading data from whole sheet
         	sessionData.readSheet();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
         System.out.println();
@@ -32,14 +31,11 @@ public class App
         //Starting Translation Process !
         try {
         	new RunIterator(currentLangs,translationData);
+        	System.out.println("Translations Done");
         }
         catch(Exception e) {
         	e.printStackTrace();
         }
-        finally {
-        	System.out.println("Translations Done");
-        }
-        
       //for(int i=0;i<currentLangs.length && currentLangs[i]!=null; i++) { System.out.print(currentLangs[i] + "\t");}
         //System.out.println();
     }

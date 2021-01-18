@@ -7,7 +7,6 @@ import com.wellsfargo.coms.translationAdder.languages.LanguagesList.LangFormats;
 
 public class SearchFile {
 	
-	private SearchText getFileName = new SearchText();
 	private String language;
 	ResourceBundle rb = ResourceBundle.getBundle("config");
     private String folderPath = rb.getString("rootLocation");
@@ -23,8 +22,15 @@ public class SearchFile {
 
 	public String runSearch(String fileName) {
 		try {
-			File found = searchFile(new File(folderPath), fileName +"_"+ language + ".properties");
-			return found.getName();
+			if(language.equals("eng")) {
+				File found = searchFile(new File(folderPath), fileName + ".properties");
+				return found.getName();
+			}
+			else {
+				File found = searchFile(new File(folderPath), fileName +"_"+ language + ".properties"); 
+				return found.getName();
+			}
+			
 		}
 		catch(Exception e) {
 			System.out.println("Warning: Locale file "+fileName +"_"+ language + ".properties"+" not present for this translation");

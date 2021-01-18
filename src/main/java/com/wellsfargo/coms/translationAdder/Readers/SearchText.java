@@ -26,7 +26,8 @@ public class SearchText {
 		
 		
         private static String filePath ="";
-        static int fileCount = 0;   
+        static int fileCount = 0;
+        int wordCount=0;
         String fileName, propertyName, fullFilePath;
         static int lineNumber=0;
         private String existingFilesForCurrentText, ignoreSearchForFiles;
@@ -49,7 +50,7 @@ public class SearchText {
 
         public String getFileNameForText(String currentText) {
         	try {
-        		existingFilesForCurrentText = props.keySet().toString();
+        		existingFilesForCurrentText = props.toString();
         		//existingFilesForCurrentText = rbForFilesIgnore.getString(currentText);
         	}
         	catch (MissingResourceException e) {
@@ -72,18 +73,18 @@ public class SearchText {
 	                if (file.isFile()) {
 	                    //System.out.println(file.getName());
 	                    fileName=file.getName();
-	                    if(fileName.equals("WriteExcelDemo.java") || existingFilesForCurrentText.contains(fileName) 
-	                    		|| ignoreSearchForFiles.contains(fileName) || !fileName.contains(".properties")) { continue; }
+	                    if(!fileName.contains(".properties") || existingFilesForCurrentText.contains(currentText+"="+fileName) || fileName.contains("_au_AU.properties") 
+	                    		|| fileName.contains("_en_GB.properties")|| ignoreSearchForFiles.contains(fileName)) { continue; }
 	                    try {
-	                    	int wordCount=0;
+	                    	wordCount=0;
 	                        FileReader reader = new FileReader(filePath);
 	                        BufferedReader br = new BufferedReader(reader); 
 	                        String s; 
 	                        while((s = br.readLine()) != null) { 
 	                            lineNumber++;
-	                           // boolean conidtion=(s.contains("="+currentText)||s.contains("= "+currentText)) && isWord(s);
-	                            boolean conidtion=(s.contains("="+currentText)||s.contains("= "+currentText));
-	                            if(conidtion){	                      
+	                           // boolean condition=(s.contains("="+currentText)||s.contains("= "+currentText)) && isWord(s);
+	                            boolean condition=(s.toLowerCase().contains("="+currentText.toLowerCase())||s.toLowerCase().contains("= "+currentText.toLowerCase()));
+	                            if(condition){	                      
                                     this.propertyName = s.split("=")[0];
                                     this.fileName = file.getName();
                                     this.fullFilePath = file.getCanonicalPath();
@@ -97,9 +98,10 @@ public class SearchText {
 	    	                        	System.out.print("Duplicate property found: " + " in "+ file.getName()+ " at " + 
 	                                			"line "+lineNumber+"\t"+ "---- "+s.trim()+ " ----\n");
 	    	                        }
-	                            	
-                            		System.out.println(currentText + " is found in "+ file.getName()+ " at " + 
-                                			"line "+lineNumber+"\t"+ "---- "+s.trim()+ " ----\n");
+                        			else {
+                            			System.out.println(currentText + " is found in "+ file.getName()+ " at " + 
+                            					"line "+lineNumber+"\t"+ "---- "+s.trim()+ " ----\n");
+                        			}
                         			wordCount++;                                   
 	                            }                           
 	                        }

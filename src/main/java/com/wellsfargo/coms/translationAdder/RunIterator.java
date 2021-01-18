@@ -24,7 +24,7 @@ public class RunIterator {
 	private String engFileLocation;
 	private SearchFile sf = new SearchFile();
 	SearchText st = new SearchText();
-	ResourceBundle rb = ResourceBundle.getBundle("resources/config");
+	ResourceBundle rb = ResourceBundle.getBundle("config");
 	//ResourceBundle rbForFilesIgnore = ResourceBundle.getBundle("resources/ignoreDoNotEdit");
 	 String ignoreFilesPath = rb.getString("ignoreFilesPath");
 	
@@ -45,10 +45,11 @@ public class RunIterator {
 			// Fetching English translation for each corresponding word
 			this.currentEnWord = translationData[i][0].trim();
 			if(triggerEnSearch(currentEnWord)==null) {
-				System.out.println("Translations already done for \""+currentEnWord+"\"\n");
+				System.out.println("\""+currentEnWord+"\" (old) word not found in properties files\n");
 				continue;
 			}
-			for(int j=1;j<currentLangs.length && currentLangs[j]!=null; j++) {
+			triggerSearch(translationData[i][1].trim(),"eng");
+			for(int j=2;j<currentLangs.length && currentLangs[j]!=null; j++) {
 				//System.out.print(translationData[i][j]+"\t");
 				if(translationData[i][j]==null||translationData[i][j].isEmpty()) {
 					System.out.println("Translations not present for \""+currentEnWord+"\" in " + currentLangs[j] + "\n");
