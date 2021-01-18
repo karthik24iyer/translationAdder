@@ -1,8 +1,11 @@
 package com.wellsfargo.coms.translationAdder;
 
 import java.io.BufferedWriter;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.util.Properties;
 import java.util.ResourceBundle;
 
 import org.apache.commons.io.FilenameUtils;
@@ -21,24 +24,26 @@ public class RunIterator {
 	private String engFileLocation;
 	private SearchFile sf = new SearchFile();
 	SearchText st = new SearchText();
-
+	ResourceBundle rb = ResourceBundle.getBundle("resources/config");
+	//ResourceBundle rbForFilesIgnore = ResourceBundle.getBundle("resources/ignoreDoNotEdit");
+	 String ignoreFilesPath = rb.getString("ignoreFilesPath");
+	
 	public RunIterator(String[] currentLangs, String[][] translationData) {
-		try {
-			ResourceBundle rb = ResourceBundle.getBundle("resources/config");
-	        String ignoreFilesPath = rb.getString("ignoreFilesPath");
-	        System.out.println(ignoreFilesPath);
-			BufferedWriter out = new BufferedWriter(new FileWriter(ignoreFilesPath)); 
-			out.write(""); 
-			out.close(); 
-			}
-		catch (IOException e) {
-        	System.out.print("Cant find ignoreDoNotEdit.properties");
-            e.printStackTrace();
-        }
-		
+				
 		for(int i=0;i<(translationData[i].length) && translationData[i][0]!=null;i++) {
+			try {       
+				Properties props = new Properties();
+				BufferedWriter out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(ignoreFilesPath), "UTF-8"));
+				//BufferedWriter out = new BufferedWriter(new FileWriter(ignoreFilesPath)); 
+				props.clear();
+				props.store(out, "");
+				}
+			catch (IOException e) {
+	        	System.out.print("Cant find ignoreDoNotEdit.properties");
+	            e.printStackTrace();
+	        }
 			// Fetching English translation for each corresponding word
-			this.currentEnWord = translationData[i][0];
+			this.currentEnWord = translationData[i][0].trim();
 			if(triggerEnSearch(currentEnWord)==null) {
 				System.out.println("Translations already done for \""+currentEnWord+"\"\n");
 				continue;
@@ -49,7 +54,7 @@ public class RunIterator {
 					System.out.println("Translations not present for \""+currentEnWord+"\" in " + currentLangs[j] + "\n");
 					continue;
 				}
-				triggerSearch(translationData[i][j],currentLangs[j]);
+				triggerSearch(translationData[i][j].trim(),currentLangs[j].trim());
 				
 			}
 			System.out.println();

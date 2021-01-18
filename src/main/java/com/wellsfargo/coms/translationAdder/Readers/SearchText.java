@@ -3,13 +3,19 @@ package com.wellsfargo.coms.translationAdder.Readers;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Locale;
 import java.util.MissingResourceException;
+import java.util.Properties;
 import java.util.ResourceBundle;
 
 import org.apache.commons.io.FileUtils;
@@ -26,7 +32,10 @@ public class SearchText {
         private String existingFilesForCurrentText, ignoreSearchForFiles;
         ResourceBundle rb = ResourceBundle.getBundle("resources/config");
         private String folderPath = rb.getString("rootLocation");
-        ResourceBundle rbForFilesIgnore = ResourceBundle.getBundle("resources/ignoreDoNotEdit");
+        private String ignoreFilesPath = rb.getString("ignoreFilesPath");
+        //ResourceBundle rbForFilesIgnore = ResourceBundle.getBundle("resources/ignoreDoNotEdit");
+        Properties props = new Properties();
+        
         
         public String getFileName() {
         	return this.fileName;
@@ -40,7 +49,8 @@ public class SearchText {
 
         public String getFileNameForText(String currentText) {
         	try {
-        		existingFilesForCurrentText = rbForFilesIgnore.getString(currentText);
+        		existingFilesForCurrentText = props.keySet().toString();
+        		//existingFilesForCurrentText = rbForFilesIgnore.getString(currentText);
         	}
         	catch (MissingResourceException e) {
         		existingFilesForCurrentText="";
@@ -62,31 +72,42 @@ public class SearchText {
 	                if (file.isFile()) {
 	                    //System.out.println(file.getName());
 	                    fileName=file.getName();
+	                    if(fileName.equals("WriteExcelDemo.java") || existingFilesForCurrentText.contains(fileName) 
+	                    		|| ignoreSearchForFiles.contains(fileName)) { continue; }
 	                    try {
-	                        FileReader reader = new FileReader(filePath );
+	                    	int wordCount=0;
+	                        FileReader reader = new FileReader(filePath);
 	                        BufferedReader br = new BufferedReader(reader); 
 	                        String s; 
 	                        while((s = br.readLine()) != null) { 
 	                            lineNumber++;
-	                            boolean conidtion=(s.contains("="+currentText)||s.contains("= "+currentText)) && isWord(s) && 
-	                            		!file.getName().equals("WriteExcelDemo.java") && !file.getName().equals("config.properties") && 
-                            			!existingFilesForCurrentText.contains(file.getName()) && !ignoreSearchForFiles.contains(file.getName());
-	                            if(conidtion){
-	                                    System.out.println(currentText + " is found in "+ file.getName()+ " at " + 
-                                    			"line "+lineNumber+"\t"+ "---- "+s.trim()+ " ----\n");
-	                                    this.propertyName = s.split("=")[0];
-	                                    this.fileName = file.getName();
-	                                    this.fullFilePath = file.getCanonicalPath();
-	                                    BufferedWriter out = new BufferedWriter(new FileWriter(folderPath+"\\ignoreDoNotEdit.properties", true)); 
-	                        			out.write(currentText+"="+file.getName()+"\n"); 
-	                        			out.close(); 
-	                                    return file.getName();
+	                           // boolean conidtion=(s.contains("="+currentText)||s.contains("= "+currentText)) && isWord(s);
+	                            boolean conidtion=(s.contains("="+currentText)||s.contains("= "+currentText));
+	                            if(conidtion){	                      
+                                    this.propertyName = s.split("=")[0];
+                                    this.fileName = file.getName();
+                                    this.fullFilePath = file.getCanonicalPath();
+                                    BufferedWriter out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(ignoreFilesPath), "UTF-8"));
+                                    props.put(currentText, file.getName());
+                	            	props.store(out, "");
+                                    //BufferedWriter out = new BufferedWriter(new FileWriter(folderPath+"\\ignoreDoNotEdit.properties", StandardCharsets.ISO_8859_1, true)); 
+                        			//out.write(currentText+"="+file.getName()+"\n");
+                        			out.close();
+                        			if (wordCount>1) {
+	    	                        	System.out.print("Duplicate property found: " + " in "+ file.getName()+ " at " + 
+	                                			"line "+lineNumber+"\t"+ "---- "+s.trim()+ " ----\n");
+	    	                        }
+	                            	
+                            		System.out.println(currentText + " is found in "+ file.getName()+ " at " + 
+                                			"line "+lineNumber+"\t"+ "---- "+s.trim()+ " ----\n");
+                        			wordCount++;                                   
 	                            }                           
-	                        } 
-	                        reader.close(); 
+	                        }
+	                        
+	                        br.close();
+	                        if(wordCount!=0) { return file.getName(); }
 	                    }
 	                    catch(Exception e){
-	                    	System.out.print("Cant find " + currentText);
 	                        e.printStackTrace();
 	                    }
 	                    }

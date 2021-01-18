@@ -22,8 +22,15 @@ public class SearchFile {
 	}
 
 	public String runSearch(String fileName) {
-		File found = searchFile(new File(folderPath), fileName +"_"+ language + ".properties");
-		return found.getName();
+		try {
+			File found = searchFile(new File(folderPath), fileName +"_"+ language + ".properties");
+			return found.getName();
+		}
+		catch(Exception e) {
+			System.out.println("Warning: Locale file "+fileName +"_"+ language + ".properties"+" not present for this translation");
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	public File searchFile(File file, String search) {
