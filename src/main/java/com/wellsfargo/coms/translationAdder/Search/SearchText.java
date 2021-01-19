@@ -36,10 +36,9 @@ public class SearchText {
         private String existingFilesForCurrentText, ignoreSearchForFiles;
         ResourceBundle rb = ResourceBundle.getBundle("config");
         private String folderPath = rb.getString("rootLocation");
-        private String ignoreFilesPath = rb.getString("ignoreFilesPath");
+        //private String ignoreFilesPath = rb.getString("ignoreFilesPath");
         //ResourceBundle rbForFilesIgnore = ResourceBundle.getBundle("resources/ignoreDoNotEdit");
         Properties props = new Properties();
-        
         
         public String getFileName() {
         	return this.fileName;
@@ -96,10 +95,10 @@ public class SearchText {
                                     this.propertyName = s.split("=")[0];
                                     this.fileName = file.getName();
                                     this.fullFilePath = file.getCanonicalPath();
-                                    BufferedWriter out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(ignoreFilesPath), "UTF-8"));
-                                    props.put(currentText, file.getName());
-                	            	props.store(out, "");
-                        			out.close();
+                                   // BufferedWriter out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(ignoreFilesPath), "UTF-8"));
+                                    props.put(currentText.toLowerCase(), file.getName());
+                	            	//props.store(out,null);
+                        			//out.close();
                         			if (wordCount>1) {
 	    	                        	//System.out.print("Duplicate property found: " + " in "+ file.getName()+ " at " + 
 	                                			//"line "+lineNumber+"\t"+ "---- "+s.trim()+ " ----\n");
@@ -114,8 +113,7 @@ public class SearchText {
                         			}
                         			wordCount++;                                   
 	                            }                           
-	                        }
-	                        
+	                        }	                        
 	                        br.close();
 	                        if(wordCount!=0) { return file.getName(); }
 	                    }

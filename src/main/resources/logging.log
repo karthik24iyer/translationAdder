@@ -1,34 +1,34 @@
-2021-01-19 14:06:03 INFO  App:112 - Payment Activity Download is found in temp.properties at line 1	---- Report.pymtActDwnld=Payment Activity Download ----
+2021-01-19 22:13:33 INFO  App:111 - Payment Activity Download is found in temp.properties at line 5	---- xyz=Payment Activity Download ----
 
-2021-01-19 14:06:03 INFO  App:42 - temp.properties found at: C:\Users\Karthik\eclipse-workspace\translationAdder\src\main\resources\temp.properties
-2021-01-19 14:06:03 INFO  App:69 - -----Report.pymtActDwnld=Payment Activity Download-----(old) already present in temp.properties
+2021-01-19 22:13:33 INFO  App:47 - temp.properties found at: C:\Users\Karthik\eclipse-workspace\translationAdder\src\main\resources\temp.properties
+2021-01-19 22:13:33 INFO  App:94 - -----xyz=Payment Activity Download-----(old) already present in temp.propertiesat line: 5, replacing it with new -----xyz=New Payment Activity Download-----
 
-2021-01-19 14:06:15 INFO  App:42 - temp_de_DE.properties found at: C:\Users\Karthik\eclipse-workspace\translationAdder\src\main\resources\temp_de_DE.properties
-2021-01-19 14:06:15 INFO  App:65 - -----Report.pymtActDwnld=Zahlungsaktivit\u00E4t herunterladen----- already present in temp_de_DE.properties with same translation
+2021-01-19 22:13:33 INFO  App:47 - temp_de_DE.properties found at: C:\Users\Karthik\eclipse-workspace\translationAdder\src\main\resources\temp_de_DE.properties
+2021-01-19 22:13:33 INFO  App:106 - Writing New -----xyz=Zahlungsaktivit\u00E4t herunterladen----- in temp_de_DE.properties at line: 4
 
-2021-01-19 14:06:19 INFO  App:42 - temp_zh_CN.properties found at: C:\Users\Karthik\eclipse-workspace\translationAdder\src\main\resources\temp_zh_CN.properties
-2021-01-19 14:06:19 INFO  App:65 - -----Report.pymtActDwnld=\u4ED8\u6B3E\u4F18\u60E0\u4E0B\u8F7D----- already present in temp_zh_CN.properties with same translation
+2021-01-19 22:13:33 INFO  App:47 - temp_zh_CN.properties found at: C:\Users\Karthik\eclipse-workspace\translationAdder\src\main\resources\temp_zh_CN.properties
+2021-01-19 22:13:33 INFO  App:106 - Writing New -----xyz=\u4ED8\u6B3E\u4F18\u60E0\u4E0B\u8F7D----- in temp_zh_CN.properties at line: 4
 
-2021-01-19 14:06:23 INFO  App:112 - Water is found in temp.properties at line 4	---- text4.asdfg.xyz=Water ----
+2021-01-19 22:13:33 INFO  App:111 - Water is found in temp.properties at line 2	---- ijk=Water ----
 
-2021-01-19 14:06:23 INFO  App:42 - temp.properties found at: C:\Users\Karthik\eclipse-workspace\translationAdder\src\main\resources\temp.properties
-2021-01-19 14:06:23 INFO  App:69 - -----text4.asdfg.xyz=Water-----(old) already present in temp.properties
+2021-01-19 22:13:33 INFO  App:47 - temp.properties found at: C:\Users\Karthik\eclipse-workspace\translationAdder\src\main\resources\temp.properties
+2021-01-19 22:13:33 INFO  App:94 - -----ijk=Water-----(old) already present in temp.propertiesat line: 2, replacing it with new -----ijk=New Water-----
 
-2021-01-19 14:06:25 INFO  App:42 - temp_de_DE.properties found at: C:\Users\Karthik\eclipse-workspace\translationAdder\src\main\resources\temp_de_DE.properties
-2021-01-19 14:06:25 INFO  App:65 - -----text4.asdfg.xyz=Wasser----- already present in temp_de_DE.properties with same translation
+2021-01-19 22:13:33 INFO  App:47 - temp_de_DE.properties found at: C:\Users\Karthik\eclipse-workspace\translationAdder\src\main\resources\temp_de_DE.properties
+2021-01-19 22:13:33 INFO  App:89 - -----ijk=Wasser----- already present in temp_de_DE.properties with same translation at line: 2. Skipping... 
 
-2021-01-19 14:06:26 INFO  App:42 - temp_zh_CN.properties found at: C:\Users\Karthik\eclipse-workspace\translationAdder\src\main\resources\temp_zh_CN.properties
-2021-01-19 14:06:26 INFO  App:65 - -----text4.asdfg.xyz=\u6C34----- already present in temp_zh_CN.properties with same translation
+2021-01-19 22:13:33 INFO  App:47 - temp_zh_CN.properties found at: C:\Users\Karthik\eclipse-workspace\translationAdder\src\main\resources\temp_zh_CN.properties
+2021-01-19 22:13:33 INFO  App:89 - -----ijk=\u6C34----- already present in temp_zh_CN.properties with same translation at line: 2. Skipping... 
 
-2021-01-19 14:06:27 INFO  App:112 - Thank you is found in temp.properties at line 5	---- thank.you=Thank you ----
+2021-01-19 22:13:33 INFO  App:111 - Thank you is found in temp.properties at line 3	---- mno=Thank you ----
 
-2021-01-19 14:06:27 INFO  App:42 - temp.properties found at: C:\Users\Karthik\eclipse-workspace\translationAdder\src\main\resources\temp.properties
-2021-01-19 14:06:27 INFO  App:69 - -----thank.you=Thank you-----(old) already present in temp.properties
+2021-01-19 22:13:33 INFO  App:47 - temp.properties found at: C:\Users\Karthik\eclipse-workspace\translationAdder\src\main\resources\temp.properties
+2021-01-19 22:13:33 INFO  App:94 - -----mno=Thank you-----(old) already present in temp.propertiesat line: 3, replacing it with new -----mno=Thank you very much-----
 
-2021-01-19 14:06:27 INFO  App:42 - temp_de_DE.properties found at: C:\Users\Karthik\eclipse-workspace\translationAdder\src\main\resources\temp_de_DE.properties
-2021-01-19 14:06:27 INFO  App:65 - -----thank.you=Dankesch\u00F6n----- already present in temp_de_DE.properties with same translation
+2021-01-19 22:13:33 INFO  App:47 - temp_de_DE.properties found at: C:\Users\Karthik\eclipse-workspace\translationAdder\src\main\resources\temp_de_DE.properties
+2021-01-19 22:13:33 INFO  App:89 - -----mno=Dankesch\u00F6n----- already present in temp_de_DE.properties with same translation at line: 3. Skipping... 
 
-2021-01-19 14:06:28 INFO  App:42 - temp_zh_CN.properties found at: C:\Users\Karthik\eclipse-workspace\translationAdder\src\main\resources\temp_zh_CN.properties
-2021-01-19 14:06:28 INFO  App:65 - -----thank.you=\u8C22\u8C22----- already present in temp_zh_CN.properties with same translation
+2021-01-19 22:13:33 INFO  App:47 - temp_zh_CN.properties found at: C:\Users\Karthik\eclipse-workspace\translationAdder\src\main\resources\temp_zh_CN.properties
+2021-01-19 22:13:33 INFO  App:89 - -----mno=\u8C22\u8C22----- already present in temp_zh_CN.properties with same translation at line: 3. Skipping... 
 
-2021-01-19 14:06:28 INFO  App:37 - Translations Done
+2021-01-19 22:13:33 INFO  App:35 - Translations Done

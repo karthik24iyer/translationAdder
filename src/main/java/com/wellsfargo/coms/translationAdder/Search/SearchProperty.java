@@ -8,12 +8,15 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.nio.file.Files;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
 import java.nio.charset.CharsetEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Properties;
@@ -34,8 +37,10 @@ public class SearchProperty {
 		final Logger logger = Logger.getLogger(App.class.getName());
 		newTranslation= (new UnicodeEncoding()).getEncodedString(newTranslation);
 		ResourceBundle rb = ResourceBundle.getBundle("config");
+		String ignoreSearchForFiles = rb.getString("IgNoReAlL");
         boolean disablePrompt = Boolean.valueOf(rb.getString("disablePrompt"));
 		boolean done=false;
+		int lineNumber=0, propAtLine=0;
 		String oldTranslation;
 		File currentTransFile=new File(filePath+"\\"+ fileName);
 		//System.out.println(fileName+ " found at: " + filePath+fileName);
@@ -43,71 +48,66 @@ public class SearchProperty {
      	try {
 	        if (currentTransFile.isFile()) {        
 	        	BufferedReader br = new BufferedReader(new InputStreamReader(
-            	        new FileInputStream(filePath+"\\"+ fileName), "UTF-8"));
-	            String s,in=""; 
+            	        new FileInputStream(filePath+"\\"+ fileName),"ISO-8859-1"));
+	            String s;
+	            ArrayList<String> in= new ArrayList<String>(); 
 	            while((s = br.readLine()) != null) { 
-	            	in+=s+"\n";
-	            }
-	            //System.out.println(in);
-	            br.close();
-	            br.close();
-	            if((in.contains(propertyName+"=")||in.contains(propertyName+" =")) && 
-                			!currentTransFile.getName().equals("WriteExcelDemo.java")) {
-	            	if(in.contains(propertyName+" = ")) {oldTranslation = in.split(propertyName+" = ")[1].split("\n")[0]; }
-	            	else if(in.contains(propertyName+" =")){oldTranslation = in.split(propertyName+" =")[1].split("\n")[0]; }
-	            	else {oldTranslation = in.split(propertyName+"=")[1].split("\n")[0]; }
-	            	
-	            	
-	                BufferedWriter out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(filePath+fileName), "UTF-8"));
-		            if(!disablePrompt) {
-		            	if(oldTranslation.equals(newTranslation)) {
-		            		System.out.println("-----" + propertyName+"="+oldTranslation + "----- already present in "+ currentTransFile.getName()+" with same translation\n");
-		            		logger.info("-----" + propertyName+"="+oldTranslation + "----- already present in "+ currentTransFile.getName()+" with same translation\n");
-		            	}
-		            	else {
-		            		System.out.println("-----" + propertyName+"="+oldTranslation + "-----(old) already present in "+ currentTransFile.getName()+"\n");
-		            		logger.info("-----" + propertyName+"="+oldTranslation + "-----(old) already present in "+ currentTransFile.getName()+"\n");
-		            	}
-		            	
-	                	Scanner myIn = new Scanner(System.in);
-		                System.out.println("Do you want to replace it with -----" + propertyName+"="+newTranslation + "-----  ? (y/n) : ");
-		                //logger.info("Do you want to replace it with -----" + propertyName+"="+newTranslation + "-----  ? (y/n) : ");
-		                String decide = myIn.nextLine();
-		                //myIn.close();
-		                switch(decide.toLowerCase()) {
-		                	case "y":
-		                		in = in.replace(oldTranslation, newTranslation);	                
-		                		break;
-		                	case "n":
-		                		break;
-		                }
+		            	lineNumber++;
+		            	in.add(s);
+		            //System.out.println("lineNumber: "+lineNumber+" - "+in);	
+		            if(s.startsWith(propertyName) && !ignoreSearchForFiles.contains(fileName)) {
+		            	if(s.contains(propertyName+" = ")) {oldTranslation = s.split(propertyName+" = ")[1].split("\n")[0]; }
+		            	else if(s.contains(propertyName+" =")){oldTranslation = s.split(propertyName+" =")[1].split("\n")[0]; }
+		            	else {oldTranslation = s.split(propertyName+"=")[1].split("\n")[0]; }
+		            	propAtLine=lineNumber;
+			            if(!disablePrompt) {
+			            	if(oldTranslation.equals(newTranslation)) {
+			            		System.out.println("-----" + propertyName+"="+oldTranslation + "----- already present in "+ currentTransFile.getName()+" with same translation at line: "+propAtLine+"\n");
+			            		logger.info("-----" + propertyName+"="+oldTranslation + "----- already present in "+ currentTransFile.getName()+" with same translation at line: "+propAtLine+"\n");
+			            	}
+			            	else {
+			            		System.out.println("-----" + propertyName+"="+oldTranslation + "-----(old) already present in "+ currentTransFile.getName()+" at line: "+propAtLine+"\n");
+			            		logger.info("-----" + propertyName+"="+oldTranslation + "-----(old) already present in "+ currentTransFile.getName()+" at line: "+propAtLine+"\n");
+			            	}
+			            	
+		                	Scanner myIn = new Scanner(System.in);
+			                System.out.println("Do you want to replace it with -----" + propertyName+"="+newTranslation + "-----  ? (y/n) : ");
+			                //logger.info("Do you want to replace it with -----" + propertyName+"="+newTranslation + "-----  ? (y/n) : ");
+			                String decide = myIn.nextLine();
+			                //myIn.close();
+			                switch(decide.toLowerCase()) {
+			                	case "y":
+			                		in.set(propAtLine-1, propertyName+"="+newTranslation);
+			                		break;
+			                	case "n":
+			                		break;
+			                }
+			            }
+			            else {
+			            	if(oldTranslation.equals(newTranslation)) {
+			            		//System.out.println("-----" + propertyName+"="+oldTranslation + "----- already present in "+ currentTransFile.getName()+" with same translation. Skipping... \n");
+			            		logger.info("-----" + propertyName+"="+oldTranslation + "----- already present in "+ currentTransFile.getName()+" with same translation at line: "+propAtLine+". Skipping... \n");
+			            	}
+			            	else {	
+			            		//System.out.println("-----" + propertyName+"="+oldTranslation + "-----(old) already present in "+ currentTransFile.getName()+
+			            		//		", replacing it with new -----"+ propertyName+"="+newTranslation + "-----\n");
+			            		logger.info("-----" + propertyName+"="+oldTranslation + "-----(old) already present in "+ currentTransFile.getName()+
+			            				"at line: "+propAtLine+", replacing it with new -----"+ propertyName+"="+newTranslation + "-----\n");
+			            		in.set(propAtLine-1, propertyName+"="+newTranslation);
+			            	}
+			            }			            
+		                done=true;
 		            }
-		            else {
-		            	if(oldTranslation.equals(newTranslation)) {
-		            		//System.out.println("-----" + propertyName+"="+oldTranslation + "----- already present in "+ currentTransFile.getName()+" with same translation. Skipping... \n");
-		            		logger.info("-----" + propertyName+"="+oldTranslation + "----- already present in "+ currentTransFile.getName()+" with same translation. Skipping... \n");
-		            	}
-		            	else {	
-		            		//System.out.println("-----" + propertyName+"="+oldTranslation + "-----(old) already present in "+ currentTransFile.getName()+
-		            		//		", replacing it with new -----"+ propertyName+"="+newTranslation + "-----\n");
-		            		logger.info("-----" + propertyName+"="+oldTranslation + "-----(old) already present in "+ currentTransFile.getName()+
-		            				", replacing it with new -----"+ propertyName+"="+newTranslation + "-----\n");
-		            		in = in.replace(oldTranslation, newTranslation);
-		            	}
-		            }
-	                out.write(in);
-	                out.flush();
-	                out.close();
-	                done=true;
 	            }
 	            
 	            if(!done) {
+	            	propAtLine=lineNumber;
 	            	//System.out.println("Writing New -----" + propertyName+"="+newTranslation + "----- in "+ currentTransFile.getName()+"\n");
-	            	logger.info("Writing New -----" + propertyName+"="+newTranslation + "----- in "+ currentTransFile.getName()+"\n");
-	            	BufferedWriter out = new BufferedWriter(new FileWriter(filePath+fileName, true)); 
-        			out.write("\n"+propertyName+"="+newTranslation); 
-        			out.close(); 
-	            }		
+	            	logger.info("Writing New -----" + propertyName+"="+newTranslation + "----- in "+ currentTransFile.getName()+" at line: "+propAtLine+"\n");
+	            	in.add(propAtLine, propertyName+"="+newTranslation);
+	            }	            
+	            Files.write(currentTransFile.toPath(), in, StandardCharsets.ISO_8859_1);
+	            br.close();
 	        }
      	}
      	catch(Exception e){

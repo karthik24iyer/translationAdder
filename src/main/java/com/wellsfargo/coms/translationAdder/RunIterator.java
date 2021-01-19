@@ -34,18 +34,7 @@ public class RunIterator {
 	public RunIterator(String[] currentLangs, String[][] translationData) {
 				
 		for(int i=0;i<(translationData[i].length) && translationData[i][0]!=null;i++) {
-			try {       
-				Properties props = new Properties();
-				BufferedWriter out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(ignoreFilesPath), "UTF-8"));
-				//BufferedWriter out = new BufferedWriter(new FileWriter(ignoreFilesPath)); 
-				props.clear();
-				props.store(out, "");
-				}
-			catch (IOException e) {
-				logger.error("Cant find ignoreDoNotEdit.properties, ",e);
-				//System.out.print("Cant find ignoreDoNotEdit.properties");
-	            //e.printStackTrace();
-	        }
+
 			// Fetching English translation for each corresponding word
 			this.currentEnWord = translationData[i][0].trim();
 			if(triggerEnSearch(currentEnWord)==null) {
