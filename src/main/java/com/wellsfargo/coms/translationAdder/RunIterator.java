@@ -7,15 +7,18 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.util.Properties;
 import java.util.ResourceBundle;
+import org.apache.log4j.Logger;
 
 import org.apache.commons.io.FilenameUtils;
 
-import com.wellsfargo.coms.translationAdder.Readers.SearchFile;
-import com.wellsfargo.coms.translationAdder.Readers.SearchProperty;
-import com.wellsfargo.coms.translationAdder.Readers.SearchText;
+import com.wellsfargo.coms.translationAdder.Search.SearchFile;
+import com.wellsfargo.coms.translationAdder.Search.SearchProperty;
+import com.wellsfargo.coms.translationAdder.Search.SearchText;
 import com.wellsfargo.coms.translationAdder.languages.LanguagesList.LangFormats;
 
 public class RunIterator {
+	
+	final Logger logger = Logger.getLogger(App.class.getName());
 	
 	private String currentEnWord;
 	private String standardEngFileName;
@@ -39,20 +42,23 @@ public class RunIterator {
 				props.store(out, "");
 				}
 			catch (IOException e) {
-	        	System.out.print("Cant find ignoreDoNotEdit.properties");
-	            e.printStackTrace();
+				logger.error("Cant find ignoreDoNotEdit.properties, ",e);
+				//System.out.print("Cant find ignoreDoNotEdit.properties");
+	            //e.printStackTrace();
 	        }
 			// Fetching English translation for each corresponding word
 			this.currentEnWord = translationData[i][0].trim();
 			if(triggerEnSearch(currentEnWord)==null) {
-				System.out.println("\""+currentEnWord+"\" (old) word not found in properties files\n");
+				//System.out.println("\""+currentEnWord+"\" (old) word not found in properties files\n");
+				logger.info("\""+currentEnWord+"\" word not found in properties files\n");
 				continue;
 			}
 			triggerSearch(translationData[i][1].trim(),"eng");
 			for(int j=2;j<currentLangs.length && currentLangs[j]!=null; j++) {
 				//System.out.print(translationData[i][j]+"\t");
 				if(translationData[i][j]==null||translationData[i][j].isEmpty()) {
-					System.out.println("Translations not present for \""+currentEnWord+"\" in " + currentLangs[j] + "\n");
+					//System.out.println("Translations not present for \""+currentEnWord+"\" in " + currentLangs[j] + "\n");
+					logger.info("Translations not present for \""+currentEnWord+"\" in " + currentLangs[j] + "\n");
 					continue;
 				}
 				triggerSearch(translationData[i][j].trim(),currentLangs[j].trim());

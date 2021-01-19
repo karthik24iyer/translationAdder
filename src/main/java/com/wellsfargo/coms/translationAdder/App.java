@@ -1,8 +1,7 @@
 package com.wellsfargo.coms.translationAdder;
 
 import java.io.IOException;
-
-import com.wellsfargo.coms.translationAdder.Readers.SearchFile;
+import org.apache.log4j.Logger;
 import com.wellsfargo.coms.translationAdder.Readers.SheetReader;
 import com.wellsfargo.coms.translationAdder.languages.LanguagesList;
 
@@ -10,6 +9,7 @@ public class App
 {
     public static void main( String[] args )
     {
+    	final Logger logger = Logger.getLogger(App.class.getName());
     	String[] currentLangs;
     	String[][] translationData;
     	// Instantiating Excel Sheet Reader
@@ -31,7 +31,8 @@ public class App
         //Starting Translation Process !
         try {
         	new RunIterator(currentLangs,translationData);
-        	System.out.println("Translations Done");
+        	//System.out.println("Translations Done");
+        	logger.info("Translations Done");
         }
         catch(Exception e) {
         	e.printStackTrace();

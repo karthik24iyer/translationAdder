@@ -7,11 +7,17 @@ import java.util.ResourceBundle;
 
 import org.apache.poi.xssf.usermodel.XSSFSheet;  
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+import com.wellsfargo.coms.translationAdder.App;
+
+import org.apache.log4j.Logger;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.FormulaEvaluator;  
 import org.apache.poi.ss.usermodel.Row;  
 
 public class SheetReader {  
+	
+	final Logger logger = Logger.getLogger(App.class.getName());
 	ResourceBundle rb = ResourceBundle.getBundle("config");
     private String location = rb.getString("xcelLocation");
     private int count = 0, i=0;
@@ -43,7 +49,9 @@ public class SheetReader {
 				switch(formulaEvaluator.evaluateInCell(cell).getCellType())  
 				{  
 					case NUMERIC:
-						System.out.print(cell.getNumericCellValue()+ "\t\t");   
+						//System.out.print(cell.getStringCellValue()+ "\t\t");
+						//logger.info(cell.getStringCellValue()+ "\t\t");
+						sheetData[count-1][i]=cell.getStringCellValue();
 						break;  
 					case STRING:
 						if(count==0) {
@@ -52,10 +60,12 @@ public class SheetReader {
 						else {
 							sheetData[count-1][i]=cell.getStringCellValue();
 						}
-						System.out.print(cell.getStringCellValue()+ "\t\t");  
+						//System.out.print(cell.getStringCellValue()+ "\t\t");
+						//logger.info(cell.getStringCellValue()+ "\t\t");
 						break;
 					default:
-						System.out.print("Not able to identify datatype");
+						//System.out.print("Not able to identify datatype");
+						logger.error("Not able to identify datatype");
 						break;  
 				}  
 				i++;		

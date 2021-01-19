@@ -1,0 +1,34 @@
+2021-01-19 14:06:03 INFO  App:112 - Payment Activity Download is found in temp.properties at line 1	---- Report.pymtActDwnld=Payment Activity Download ----
+
+2021-01-19 14:06:03 INFO  App:42 - temp.properties found at: C:\Users\Karthik\eclipse-workspace\translationAdder\src\main\resources\temp.properties
+2021-01-19 14:06:03 INFO  App:69 - -----Report.pymtActDwnld=Payment Activity Download-----(old) already present in temp.properties
+
+2021-01-19 14:06:15 INFO  App:42 - temp_de_DE.properties found at: C:\Users\Karthik\eclipse-workspace\translationAdder\src\main\resources\temp_de_DE.properties
+2021-01-19 14:06:15 INFO  App:65 - -----Report.pymtActDwnld=Zahlungsaktivit\u00E4t herunterladen----- already present in temp_de_DE.properties with same translation
+
+2021-01-19 14:06:19 INFO  App:42 - temp_zh_CN.properties found at: C:\Users\Karthik\eclipse-workspace\translationAdder\src\main\resources\temp_zh_CN.properties
+2021-01-19 14:06:19 INFO  App:65 - -----Report.pymtActDwnld=\u4ED8\u6B3E\u4F18\u60E0\u4E0B\u8F7D----- already present in temp_zh_CN.properties with same translation
+
+2021-01-19 14:06:23 INFO  App:112 - Water is found in temp.properties at line 4	---- text4.asdfg.xyz=Water ----
+
+2021-01-19 14:06:23 INFO  App:42 - temp.properties found at: C:\Users\Karthik\eclipse-workspace\translationAdder\src\main\resources\temp.properties
+2021-01-19 14:06:23 INFO  App:69 - -----text4.asdfg.xyz=Water-----(old) already present in temp.properties
+
+2021-01-19 14:06:25 INFO  App:42 - temp_de_DE.properties found at: C:\Users\Karthik\eclipse-workspace\translationAdder\src\main\resources\temp_de_DE.properties
+2021-01-19 14:06:25 INFO  App:65 - -----text4.asdfg.xyz=Wasser----- already present in temp_de_DE.properties with same translation
+
+2021-01-19 14:06:26 INFO  App:42 - temp_zh_CN.properties found at: C:\Users\Karthik\eclipse-workspace\translationAdder\src\main\resources\temp_zh_CN.properties
+2021-01-19 14:06:26 INFO  App:65 - -----text4.asdfg.xyz=\u6C34----- already present in temp_zh_CN.properties with same translation
+
+2021-01-19 14:06:27 INFO  App:112 - Thank you is found in temp.properties at line 5	---- thank.you=Thank you ----
+
+2021-01-19 14:06:27 INFO  App:42 - temp.properties found at: C:\Users\Karthik\eclipse-workspace\translationAdder\src\main\resources\temp.properties
+2021-01-19 14:06:27 INFO  App:69 - -----thank.you=Thank you-----(old) already present in temp.properties
+
+2021-01-19 14:06:27 INFO  App:42 - temp_de_DE.properties found at: C:\Users\Karthik\eclipse-workspace\translationAdder\src\main\resources\temp_de_DE.properties
+2021-01-19 14:06:27 INFO  App:65 - -----thank.you=Dankesch\u00F6n----- already present in temp_de_DE.properties with same translation
+
+2021-01-19 14:06:28 INFO  App:42 - temp_zh_CN.properties found at: C:\Users\Karthik\eclipse-workspace\translationAdder\src\main\resources\temp_zh_CN.properties
+2021-01-19 14:06:28 INFO  App:65 - -----thank.you=\u8C22\u8C22----- already present in temp_zh_CN.properties with same translation
+
+2021-01-19 14:06:28 INFO  App:37 - Translations Done
