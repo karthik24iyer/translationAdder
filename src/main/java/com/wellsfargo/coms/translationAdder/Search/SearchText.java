@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.MissingResourceException;
@@ -24,6 +25,7 @@ import org.apache.commons.io.filefilter.TrueFileFilter;
 import org.apache.log4j.Logger;
 
 import com.wellsfargo.coms.translationAdder.App;
+import  com.wellsfargo.coms.translationAdder.Languages.LanguagesList;
 
 public class SearchText {
 		
@@ -36,6 +38,9 @@ public class SearchText {
         private String existingFilesForCurrentText, ignoreSearchForFiles;
         ResourceBundle rb = ResourceBundle.getBundle("config");
         private String folderPath = rb.getString("rootLocation");
+        private String[] languagesList = LanguagesList.langFormats;
+        ArrayList<String> fileNameList= new ArrayList<String>();
+        ArrayList<String> filePathList= new ArrayList<String>();
         //private String ignoreFilesPath = rb.getString("ignoreFilesPath");
         //ResourceBundle rbForFilesIgnore = ResourceBundle.getBundle("resources/ignoreDoNotEdit");
         Properties props = new Properties();
@@ -46,11 +51,12 @@ public class SearchText {
         public String getPropertyName() {
         	return this.propertyName;
         }
-        public String getFullFilePath() {
-        	return this.fullFilePath;
+        public ArrayList<String> getFullFilePath() {
+        	//return this.fullFilePath;
+        	return this.filePathList;
         }
 
-        public String getFileNameForText(String currentText) {
+        public ArrayList<String> getFileNamesForText(String currentText, String hCFileName) {
         	try {
         		existingFilesForCurrentText = props.toString();
         		//existingFilesForCurrentText = rbForFilesIgnore.getString(currentText);
@@ -75,8 +81,11 @@ public class SearchText {
 	                if (file.isFile()) {
 	                    //System.out.println(file.getName());
 	                    fileName=file.getName();
-	                    if(!fileName.contains(".properties") || existingFilesForCurrentText.contains(currentText+"="+fileName) || fileName.contains("_au_AU.properties") 
-	                    		|| fileName.contains("_en_GB.properties")|| ignoreSearchForFiles.contains(fileName)) { continue; }
+	                    if((hCFileName!=null && !fileName.equals(hCFileName)) || 
+	                    		!fileName.contains(".properties") || ignoreSearchForFiles.contains(fileName) || 
+	                    		existingFilesForCurrentText.contains(currentText+"="+fileName)) 
+	                    { continue; }
+	                    else if(getLangCondition(fileName)) { continue; }
 	                    try {
 	                    	wordCount=0;
 	                        FileReader reader = new FileReader(filePath);
@@ -84,17 +93,18 @@ public class SearchText {
 	                        String s,value; 
 	                        while((s = br.readLine()) != null) { 
 	                        	try {
-	                        		value = s.split("=")[1].toLowerCase();
+	                        		value = s.split("=")[1].toLowerCase().trim();
 	                        	}
 	                        	catch(ArrayIndexOutOfBoundsException e) {
 	                        		value = s.toLowerCase();
 	                        	}
 	                            lineNumber++;
-	                            boolean condition=(value.equals(currentText.toLowerCase())||value.contains(" "+currentText.toLowerCase()));
+	                            boolean condition=(value.equals(currentText.toLowerCase())||value.equals(" "+currentText.toLowerCase()));
 	                            if(condition){	                      
                                     this.propertyName = s.split("=")[0];
                                     this.fileName = file.getName();
                                     this.fullFilePath = file.getCanonicalPath();
+                                    filePathList.add(file.getCanonicalPath());
                                    // BufferedWriter out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(ignoreFilesPath), "UTF-8"));
                                     props.put(currentText.toLowerCase(), file.getName());
                 	            	//props.store(out,null);
@@ -115,7 +125,11 @@ public class SearchText {
 	                            }                           
 	                        }	                        
 	                        br.close();
-	                        if(wordCount!=0) { return file.getName(); }
+	                        if(wordCount!=0) { 
+	                        	fileNameList.add(file.getName());
+	                        	
+	                        	//return file.getName(); 
+	                        	}
 	                    }
 	                    catch(Exception e){
 	                        e.printStackTrace();
@@ -129,10 +143,19 @@ public class SearchText {
 	            	logger.error("Cant find " + currentText + ", ", e);
 	            }
 	         }
-			return null;
+	        return fileNameList;
+			//return null;
 	       }
         
         public static boolean isWord(String s) {
             return (s.length() > 0 && s.split("\\s+").length <= 2);
+        }
+        private boolean getLangCondition(String fileName) {
+        	int k=0; boolean langCondition=false;
+            while(k<languagesList.length && langCondition!=true) {
+            	langCondition = langCondition || fileName.contains(languagesList[k]);
+            	k++;
+            }
+            return langCondition;
         }
     }

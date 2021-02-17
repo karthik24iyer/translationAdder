@@ -55,10 +55,17 @@ public class SearchProperty {
 		            	lineNumber++;
 		            	in.add(s);
 		            //System.out.println("lineNumber: "+lineNumber+" - "+in);	
-		            if(s.startsWith(propertyName) && !ignoreSearchForFiles.contains(fileName)) {
+		            if(s.startsWith(propertyName) && !s.startsWith("#") && !ignoreSearchForFiles.contains(fileName)) {
 		            	if(s.contains(propertyName+" = ")) {oldTranslation = s.split(propertyName+" = ")[1].split("\n")[0]; }
 		            	else if(s.contains(propertyName+" =")){oldTranslation = s.split(propertyName+" =")[1].split("\n")[0]; }
-		            	else {oldTranslation = s.split(propertyName+"=")[1].split("\n")[0]; }
+		            	else {
+			            	try {
+			            		oldTranslation = s.split(propertyName+"=")[1].split("\n")[0];
+			            	}
+			            	catch(ArrayIndexOutOfBoundsException e) {
+			            		oldTranslation="";
+			            	}
+		            	}
 		            	propAtLine=lineNumber;
 			            if(!disablePrompt) {
 			            	if(oldTranslation.equals(newTranslation)) {

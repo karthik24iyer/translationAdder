@@ -6,7 +6,7 @@ import java.util.ResourceBundle;
 import org.apache.log4j.Logger;
 
 import com.wellsfargo.coms.translationAdder.App;
-import com.wellsfargo.coms.translationAdder.languages.LanguagesList.LangFormats;
+import com.wellsfargo.coms.translationAdder.Languages.LanguagesList;
 
 public class SearchFile {
 	

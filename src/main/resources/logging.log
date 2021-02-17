@@ -1,34 +1,72 @@
-2021-01-19 22:13:33 INFO  App:111 - Payment Activity Download is found in temp.properties at line 5	---- xyz=Payment Activity Download ----
+2021-02-17 12:43:11 INFO  App:121 - Payment Activity Download is found in temp.properties at line 5	---- #xyz=Payment Activity Download ----
 
-2021-01-19 22:13:33 INFO  App:47 - temp.properties found at: C:\Users\Karthik\eclipse-workspace\translationAdder\src\main\resources\temp.properties
-2021-01-19 22:13:33 INFO  App:94 - -----xyz=Payment Activity Download-----(old) already present in temp.propertiesat line: 5, replacing it with new -----xyz=New Payment Activity Download-----
+2021-02-17 12:43:11 INFO  App:121 - Payment Activity Download is found in testing.properties at line 3	---- xyz= Payment Activity Download ----
 
-2021-01-19 22:13:33 INFO  App:47 - temp_de_DE.properties found at: C:\Users\Karthik\eclipse-workspace\translationAdder\src\main\resources\temp_de_DE.properties
-2021-01-19 22:13:33 INFO  App:106 - Writing New -----xyz=Zahlungsaktivit\u00E4t herunterladen----- in temp_de_DE.properties at line: 4
+2021-02-17 12:43:11 INFO  App:47 - temp.properties found at: C:\Users\Karthik\eclipse-workspace\translationAdder\src\main\resources\bundles\temp.properties
+2021-02-17 12:43:11 INFO  App:113 - Writing New -----xyz=New Payment Activity Download----- in temp.properties at line: 5
 
-2021-01-19 22:13:33 INFO  App:47 - temp_zh_CN.properties found at: C:\Users\Karthik\eclipse-workspace\translationAdder\src\main\resources\temp_zh_CN.properties
-2021-01-19 22:13:33 INFO  App:106 - Writing New -----xyz=\u4ED8\u6B3E\u4F18\u60E0\u4E0B\u8F7D----- in temp_zh_CN.properties at line: 4
+2021-02-17 12:43:11 INFO  App:47 - testing.properties found at: C:\Users\Karthik\eclipse-workspace\translationAdder\src\main\resources\bundles\testing.properties
+2021-02-17 12:43:11 INFO  App:77 - -----xyz= Payment Activity Download-----(old) already present in testing.properties at line: 3
 
-2021-01-19 22:13:33 INFO  App:111 - Water is found in temp.properties at line 2	---- ijk=Water ----
+2021-02-17 12:43:19 INFO  App:47 - temp_de_DE.properties found at: C:\Users\Karthik\eclipse-workspace\translationAdder\src\main\resources\bundles\temp_de_DE.properties
+2021-02-17 12:43:19 INFO  App:73 - -----xyz=Zahlungsaktivit\u00E4t herunterladen----- already present in temp_de_DE.properties with same translation at line: 4
 
-2021-01-19 22:13:33 INFO  App:47 - temp.properties found at: C:\Users\Karthik\eclipse-workspace\translationAdder\src\main\resources\temp.properties
-2021-01-19 22:13:33 INFO  App:94 - -----ijk=Water-----(old) already present in temp.propertiesat line: 2, replacing it with new -----ijk=New Water-----
+2021-02-17 12:43:21 INFO  App:47 - testing_de_DE.properties found at: C:\Users\Karthik\eclipse-workspace\translationAdder\src\main\resources\bundles\testing_de_DE.properties
+2021-02-17 12:43:21 INFO  App:73 - -----xyz=Zahlungsaktivit\u00E4t herunterladen----- already present in testing_de_DE.properties with same translation at line: 1
 
-2021-01-19 22:13:33 INFO  App:47 - temp_de_DE.properties found at: C:\Users\Karthik\eclipse-workspace\translationAdder\src\main\resources\temp_de_DE.properties
-2021-01-19 22:13:33 INFO  App:89 - -----ijk=Wasser----- already present in temp_de_DE.properties with same translation at line: 2. Skipping... 
+2021-02-17 12:43:22 INFO  App:47 - temp_zh_CN.properties found at: C:\Users\Karthik\eclipse-workspace\translationAdder\src\main\resources\bundles\temp_zh_CN.properties
+2021-02-17 12:43:22 INFO  App:73 - -----xyz=\u4ED8\u6B3E\u4F18\u60E0\u4E0B\u8F7D----- already present in temp_zh_CN.properties with same translation at line: 1
 
-2021-01-19 22:13:33 INFO  App:47 - temp_zh_CN.properties found at: C:\Users\Karthik\eclipse-workspace\translationAdder\src\main\resources\temp_zh_CN.properties
-2021-01-19 22:13:33 INFO  App:89 - -----ijk=\u6C34----- already present in temp_zh_CN.properties with same translation at line: 2. Skipping... 
+2021-02-17 12:44:11 INFO  App:47 - testing_zh_CN.properties found at: C:\Users\Karthik\eclipse-workspace\translationAdder\src\main\resources\bundles\testing_zh_CN.properties
+2021-02-17 12:44:11 INFO  App:73 - -----xyz=\u4ED8\u6B3E\u4F18\u60E0\u4E0B\u8F7D----- already present in testing_zh_CN.properties with same translation at line: 1
 
-2021-01-19 22:13:33 INFO  App:111 - Thank you is found in temp.properties at line 3	---- mno=Thank you ----
+2021-02-17 12:44:12 INFO  App:45 - "Water" word not found in properties files
 
-2021-01-19 22:13:33 INFO  App:47 - temp.properties found at: C:\Users\Karthik\eclipse-workspace\translationAdder\src\main\resources\temp.properties
-2021-01-19 22:13:33 INFO  App:94 - -----mno=Thank you-----(old) already present in temp.propertiesat line: 3, replacing it with new -----mno=Thank you very much-----
+2021-02-17 12:44:12 INFO  App:121 - Thank you is found in temp.properties at line 3	---- mno=Thank you ----
 
-2021-01-19 22:13:33 INFO  App:47 - temp_de_DE.properties found at: C:\Users\Karthik\eclipse-workspace\translationAdder\src\main\resources\temp_de_DE.properties
-2021-01-19 22:13:33 INFO  App:89 - -----mno=Dankesch\u00F6n----- already present in temp_de_DE.properties with same translation at line: 3. Skipping... 
+2021-02-17 12:44:12 INFO  App:47 - temp.properties found at: C:\Users\Karthik\eclipse-workspace\translationAdder\src\main\resources\bundles\temp.properties
+2021-02-17 12:44:12 INFO  App:77 - -----mno=Thank you-----(old) already present in temp.properties at line: 3
 
-2021-01-19 22:13:33 INFO  App:47 - temp_zh_CN.properties found at: C:\Users\Karthik\eclipse-workspace\translationAdder\src\main\resources\temp_zh_CN.properties
-2021-01-19 22:13:33 INFO  App:89 - -----mno=\u8C22\u8C22----- already present in temp_zh_CN.properties with same translation at line: 3. Skipping... 
+2021-02-17 12:44:13 INFO  App:47 - temp_de_DE.properties found at: C:\Users\Karthik\eclipse-workspace\translationAdder\src\main\resources\bundles\temp_de_DE.properties
+2021-02-17 12:44:13 INFO  App:73 - -----mno=Dankesch\u00F6n----- already present in temp_de_DE.properties with same translation at line: 5
 
-2021-01-19 22:13:33 INFO  App:35 - Translations Done
+2021-02-17 12:44:15 INFO  App:47 - temp_zh_CN.properties found at: C:\Users\Karthik\eclipse-workspace\translationAdder\src\main\resources\bundles\temp_zh_CN.properties
+2021-02-17 12:44:15 INFO  App:73 - -----mno=\u8C22\u8C22----- already present in temp_zh_CN.properties with same translation at line: 2
+
+2021-02-17 12:44:15 INFO  App:35 - Translations Done
+2021-02-17 12:47:16 INFO  App:121 - Payment Activity Download is found in temp.properties at line 5	---- xyz=Payment Activity Download ----
+
+2021-02-17 12:47:16 INFO  App:121 - Payment Activity Download is found in testing.properties at line 3	---- xyz= Payment Activity Download ----
+
+2021-02-17 12:47:16 INFO  App:47 - temp.properties found at: C:\Users\Karthik\eclipse-workspace\translationAdder\src\main\resources\bundles\temp.properties
+2021-02-17 12:47:16 INFO  App:77 - -----xyz=Payment Activity Download-----(old) already present in temp.properties at line: 5
+
+2021-02-17 12:47:18 INFO  App:47 - testing.properties found at: C:\Users\Karthik\eclipse-workspace\translationAdder\src\main\resources\bundles\testing.properties
+2021-02-17 12:47:18 INFO  App:77 - -----xyz= Payment Activity Download-----(old) already present in testing.properties at line: 3
+
+2021-02-17 12:47:18 INFO  App:47 - temp_de_DE.properties found at: C:\Users\Karthik\eclipse-workspace\translationAdder\src\main\resources\bundles\temp_de_DE.properties
+2021-02-17 12:47:18 INFO  App:77 - -----xyz=Zahlungsaktivit-----(old) already present in temp_de_DE.properties at line: 4
+
+2021-02-17 12:47:18 INFO  App:47 - testing_de_DE.properties found at: C:\Users\Karthik\eclipse-workspace\translationAdder\src\main\resources\bundles\testing_de_DE.properties
+2021-02-17 12:47:18 INFO  App:73 - -----xyz=Zahlungsaktivit\u00E4t herunterladen----- already present in testing_de_DE.properties with same translation at line: 1
+
+2021-02-17 12:47:19 INFO  App:47 - temp_zh_CN.properties found at: C:\Users\Karthik\eclipse-workspace\translationAdder\src\main\resources\bundles\temp_zh_CN.properties
+2021-02-17 12:47:19 INFO  App:113 - Writing New -----xyz=\u4ED8\u6B3E\u4F18\u60E0\u4E0B\u8F7D----- in temp_zh_CN.properties at line: 0
+
+2021-02-17 12:47:19 INFO  App:47 - testing_zh_CN.properties found at: C:\Users\Karthik\eclipse-workspace\translationAdder\src\main\resources\bundles\testing_zh_CN.properties
+2021-02-17 12:47:19 INFO  App:113 - Writing New -----xyz=\u4ED8\u6B3E\u4F18\u60E0\u4E0B\u8F7D----- in testing_zh_CN.properties at line: 0
+
+2021-02-17 12:47:19 INFO  App:45 - "Water" word not found in properties files
+
+2021-02-17 12:47:19 INFO  App:121 - Thank you is found in temp.properties at line 3	---- mno=Thank you ----
+
+2021-02-17 12:47:19 INFO  App:47 - temp.properties found at: C:\Users\Karthik\eclipse-workspace\translationAdder\src\main\resources\bundles\temp.properties
+2021-02-17 12:47:19 INFO  App:77 - -----mno=Thank you-----(old) already present in temp.properties at line: 3
+
+2021-02-17 12:47:19 INFO  App:47 - temp_de_DE.properties found at: C:\Users\Karthik\eclipse-workspace\translationAdder\src\main\resources\bundles\temp_de_DE.properties
+2021-02-17 12:47:19 INFO  App:113 - Writing New -----mno=Dankesch\u00F6n----- in temp_de_DE.properties at line: 4
+
+2021-02-17 12:47:19 INFO  App:47 - temp_zh_CN.properties found at: C:\Users\Karthik\eclipse-workspace\translationAdder\src\main\resources\bundles\temp_zh_CN.properties
+2021-02-17 12:47:19 INFO  App:113 - Writing New -----mno=\u8C22\u8C22----- in temp_zh_CN.properties at line: 1
+
+2021-02-17 12:47:19 INFO  App:35 - Translations Done

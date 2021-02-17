@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.util.ArrayList;
 import java.util.Properties;
 import java.util.ResourceBundle;
 import org.apache.log4j.Logger;
@@ -14,7 +15,6 @@ import org.apache.commons.io.FilenameUtils;
 import com.wellsfargo.coms.translationAdder.Search.SearchFile;
 import com.wellsfargo.coms.translationAdder.Search.SearchProperty;
 import com.wellsfargo.coms.translationAdder.Search.SearchText;
-import com.wellsfargo.coms.translationAdder.languages.LanguagesList.LangFormats;
 
 public class RunIterator {
 	
@@ -22,14 +22,17 @@ public class RunIterator {
 	
 	private String currentEnWord;
 	private String standardEngFileName;
+	ArrayList<String> standardEngFileNameList = new ArrayList<String>();
 	private String currentTranslationFileName;
 	private String currentPropertyName;
 	private String engFileLocation;
+	ArrayList<String> engFileLocationList = new ArrayList<String>();
 	private SearchFile sf = new SearchFile();
 	SearchText st = new SearchText();
 	ResourceBundle rb = ResourceBundle.getBundle("config");
 	//ResourceBundle rbForFilesIgnore = ResourceBundle.getBundle("resources/ignoreDoNotEdit");
-	 String ignoreFilesPath = rb.getString("ignoreFilesPath");
+	String ignoreFilesPath = rb.getString("ignoreFilesPath");
+	String getHCFileName = rb.getString("searchOnlyInFile");
 	
 	public RunIterator(String[] currentLangs, String[][] translationData) {
 				
@@ -42,7 +45,14 @@ public class RunIterator {
 				logger.info("\""+currentEnWord+"\" word not found in properties files\n");
 				continue;
 			}
-			triggerSearch(translationData[i][1].trim(),"eng");
+			int k=0;
+			while(k<standardEngFileNameList.size()) {
+				this.standardEngFileName = standardEngFileNameList.get(k);
+				this.engFileLocation = engFileLocationList.get(k);
+				triggerSearch(translationData[i][1].trim(),"eng");
+				k++;
+			}
+
 			for(int j=2;j<currentLangs.length && currentLangs[j]!=null; j++) {
 				//System.out.print(translationData[i][j]+"\t");
 				if(translationData[i][j]==null||translationData[i][j].isEmpty()) {
@@ -50,27 +60,41 @@ public class RunIterator {
 					logger.info("Translations not present for \""+currentEnWord+"\" in " + currentLangs[j] + "\n");
 					continue;
 				}
-				triggerSearch(translationData[i][j].trim(),currentLangs[j].trim());
+				k=0;
+				while(k<standardEngFileNameList.size()) {
+					this.standardEngFileName = standardEngFileNameList.get(k);
+					this.engFileLocation = engFileLocationList.get(k);
+					triggerSearch(translationData[i][j].trim(),currentLangs[j].trim());
+					k++;
+				}
+				
 				
 			}
+			standardEngFileNameList.clear();
+			engFileLocationList.clear();
 			System.out.println();
 		}
 	}
 	
 	public String triggerEnSearch(String enWord) {
 		//System.out.print(st.getFileNameForText(enWord)+"\t"+st.getPropertyName()+"\n");
-		this.standardEngFileName = st.getFileNameForText(enWord);
-		if(standardEngFileName==null) {
+		if(getHCFileName!=null && getHCFileName.contains(".properties")) {
+			this.standardEngFileNameList = st.getFileNamesForText(enWord,getHCFileName);
+		}
+		else {
+			this.standardEngFileNameList = st.getFileNamesForText(enWord,null);
+		}			
+		if(standardEngFileNameList.isEmpty()) {
 			return null;
 		}
 		this.currentPropertyName = st.getPropertyName();
-		this.engFileLocation = st.getFullFilePath();
+		this.engFileLocationList = st.getFullFilePath();
 		return "";
 	}
 	
 	public void triggerSearch(String transWord, String currentLang) {
 			this.currentTranslationFileName = sf.runFileReader(standardEngFileName,currentLang);
 			//System.out.println(currentTranslationFileName+"\t"+C:\\"+FilenameUtils.getPath(engFileLocation)+"\t"+currentPropertyName+"\t"+transWord);
-			new SearchProperty(currentTranslationFileName,"C:\\"+FilenameUtils.getPath(engFileLocation),currentPropertyName, transWord);
+			new SearchProperty(currentTranslationFileName,"C:\\"+FilenameUtils.getPath(engFileLocation),currentPropertyName.trim(), transWord);
 	}
 }
