@@ -3,7 +3,6 @@ package com.wellsfargo.coms.translationAdder;
 import java.io.IOException;
 import org.apache.log4j.Logger;
 import com.wellsfargo.coms.translationAdder.Readers.SheetReader;
-import com.wellsfargo.coms.translationAdder.Languages.LanguagesList;
 
 public class App 
 {

@@ -1,31 +1,15 @@
 package com.wellsfargo.coms.translationAdder.Search;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.nio.file.Files;
-import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.io.UnsupportedEncodingException;
-import java.nio.charset.Charset;
-import java.nio.charset.CharsetEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-import java.util.Properties;
 import java.util.ResourceBundle;
 import java.util.Scanner;
-
-import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
-
 import com.wellsfargo.coms.translationAdder.App;
 import com.wellsfargo.coms.translationAdder.Misc.UnicodeEncoding;
 
