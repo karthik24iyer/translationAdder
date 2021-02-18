@@ -3,13 +3,13 @@
   
 ##This application will add translations from a given excel file (in a standard format) to respective .properties file in COMS
   
-###NOTE:  
+### NOTE:  
 * Please refer "src\main\java\resources\config.properties" to change required settings, and "Translations.xlsx" to check the format of required input.  
 * There are two columns for English in excel file. First for existing word and second for a new translation in English. (If no changes to English, you can keep both columns identical)  
 * Refer this [link](https://github.com/karthik24iyer/TranslationAdderJarSupport) for any missing jar support ( which shouldn't be the case if you have coms imported)  
 --------------------------------------------------------------------------------------------------------------------------------------  
 
-###The following features are supported by this application   
+### The following features are supported by this application   
 
 * Adding new translations for existing properties 
 * Replacing existing translations ( including English ) with new ones in Excel.  
@@ -21,7 +21,7 @@
 * Only .xlsx file support at the moment. Although if original file formattings are correct, .csv and .xls files will also work after changing their format to .xlsx.  
 --------------------------------------------------------------------------------------------------------------------------------------  
 
-###How to install, run and check changes  
+### How to install, run and check changes  
 1. Clone the repository
 2. Use eclise Import -> Existing Maven projects
 3. Edit the required file paths in the given format in config.properties (configWF.properties can be used as template with all paths already given with my UID)
@@ -32,7 +32,7 @@
 8. Its done. Refer debug solutions below for any issues.
 --------------------------------------------------------------------------------------------------------------------------------------  
 
-###The following possible endcases are already covered in the application    
+### The following possible endcases are already covered in the application    
 
 * Duplicate property name within same .properties file  
 * Any formating issues in .properties file like extra spaces / misplaced "=" etc  
@@ -40,7 +40,7 @@
 * Case-sensitive letters in excel or .properties file are taken care for.  
 --------------------------------------------------------------------------------------------------------------------------------------  
 
-###The following issues might come while using the application    
+### The following issues might come while using the application    
 
 * Unable to build/run the application to due compilation issues:  
 Happens if java version in classpath is inconsistent with our eclipse's java version.  
@@ -71,4 +71,4 @@ Solution: Please ensure there aren't.
 Solution: Please refer config.properties for a giving the correct file path format.  
 --------------------------------------------------------------------------------------------------------------------------------------  
   
-###If you find any other bug than stated above, please reach out to me.###  
+#### If you find any other bug than stated above, please reach out to me.
