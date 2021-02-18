@@ -1,7 +1,6 @@
 # translationAdder
-## To auto add translations from excel file  
-  
-## This application will add translations from a given excel file (in a standard format) to respective .properties file in COMS
+
+### This application will add translations from a given excel file (in a standard format) to respective .properties file in COMS
   
 ### NOTE:  
 * Please refer "src\main\java\resources\config.properties" to change required settings, and "Translations.xlsx" to check the format of required input.  
