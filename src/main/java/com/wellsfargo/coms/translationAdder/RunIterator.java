@@ -30,7 +30,7 @@ public class RunIterator {
 	
 	public RunIterator(String[] currentLangs, String[][] translationData, int maxRowCount) {
 				
-		for(int i=0;i<(translationData.length) && translationData[i][0]!=null;i++) {
+		for(int i=0;i<maxRowCount && translationData[i][0]!=null;i++) {
 
 			// Fetching English translation for each corresponding word
 			this.currentEnWord = translationData[i][0].trim();
