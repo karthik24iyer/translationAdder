@@ -19,7 +19,7 @@ public class SearchProperty {
 	public SearchProperty(String fileName, String filePath, String propertyName, String newTranslation) {
 		
 		final Logger logger = Logger.getLogger(App.class.getName());
-		newTranslation= (new UnicodeEncoding()).getEncodedString(newTranslation);
+		newTranslation= (new UnicodeEncoding()).getEncodedString(newTranslation).trim();
 		ResourceBundle rb = ResourceBundle.getBundle("config");
 		String ignoreSearchForFiles = rb.getString("IgNoReAlL");
         boolean disablePrompt = Boolean.valueOf(rb.getString("disablePrompt"));
@@ -39,12 +39,12 @@ public class SearchProperty {
 		            	lineNumber++;
 		            	in.add(s);
 		            //System.out.println("lineNumber: "+lineNumber+" - "+in);	
-		            if(s.startsWith(propertyName) && !s.startsWith("#") && !ignoreSearchForFiles.contains(fileName)) {
+		            if((s.startsWith(propertyName+"=")||s.startsWith(propertyName+" =")) && !s.startsWith("#") && !ignoreSearchForFiles.contains(fileName)) {
 		            	if(s.contains(propertyName+" = ")) {oldTranslation = s.split(propertyName+" = ")[1].split("\n")[0]; }
 		            	else if(s.contains(propertyName+" =")){oldTranslation = s.split(propertyName+" =")[1].split("\n")[0]; }
 		            	else {
 			            	try {
-			            		oldTranslation = s.split(propertyName+"=")[1].split("\n")[0];
+			            		oldTranslation = s.split(propertyName+"=")[1].split("\n")[0].trim();
 			            	}
 			            	catch(ArrayIndexOutOfBoundsException e) {
 			            		oldTranslation="";
@@ -52,7 +52,7 @@ public class SearchProperty {
 		            	}
 		            	propAtLine=lineNumber;
 			            if(!disablePrompt) {
-			            	if(oldTranslation.equals(newTranslation)) {
+			            	if(oldTranslation.toLowerCase().equals(newTranslation.toLowerCase())) {
 			            		System.out.println("-----" + propertyName+"="+oldTranslation + "----- already present in "+ currentTransFile.getName()+" with same translation at line: "+propAtLine+"\n");
 			            		logger.info("-----" + propertyName+"="+oldTranslation + "----- already present in "+ currentTransFile.getName()+" with same translation at line: "+propAtLine+"\n");
 			            	}
@@ -75,7 +75,7 @@ public class SearchProperty {
 			                }
 			            }
 			            else {
-			            	if(oldTranslation.equals(newTranslation)) {
+			            	if(oldTranslation.toLowerCase().equals(newTranslation.toLowerCase())) {
 			            		//System.out.println("-----" + propertyName+"="+oldTranslation + "----- already present in "+ currentTransFile.getName()+" with same translation. Skipping... \n");
 			            		logger.info("-----" + propertyName+"="+oldTranslation + "----- already present in "+ currentTransFile.getName()+" with same translation at line: "+propAtLine+". Skipping... \n");
 			            	}

@@ -12,7 +12,7 @@
 
 * Adding new translations for existing properties 
 * Replacing existing translations ( including English ) with new ones in Excel.  
-* Adding unicode characters (eg. \u01234) to add non-native translation letters (like German/French) which display neatly on UI as intended. Unicode is used to keep consistency across all languages.  
+* Using unicode characters (eg. \u01234) to add non-native translation letters (like German/French) which display neatly on UI as intended. Unicode is used to keep consistency across all languages. You can confirm your unicoded translation by hovering over the word
 * Adding same property-translation to multiple .properties file containing the same property.  
 * Manual console prompt to ask before overwriting any existing translation (can be disabled in config file).  
 * log4j logging for all translations.  

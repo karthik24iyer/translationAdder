@@ -30,9 +30,11 @@ public class App
         
         //Starting Translation Process !
         try {
+        	System.out.println("App is running");
+        	logger.info("App is running");
         	new RunIterator(currentLangs,translationData,maxRowCount);
-        	//System.out.println("Translations Done");
-        	logger.info("Translations Done");
+        	System.out.println("Translations done");
+        	logger.info("Translations done");
         }
         catch(Exception e) {
         	e.printStackTrace();
