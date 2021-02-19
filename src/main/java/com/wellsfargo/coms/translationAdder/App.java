@@ -11,11 +11,12 @@ public class App
     	final Logger logger = Logger.getLogger(App.class.getName());
     	String[] currentLangs;
     	String[][] translationData;
+    	int maxRowCount=0;
     	// Instantiating Excel Sheet Reader
     	SheetReader sessionData = new SheetReader();
         try {
         	// Reading data from whole sheet
-        	sessionData.readSheet();
+        	maxRowCount=sessionData.readSheet();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -29,7 +30,7 @@ public class App
         
         //Starting Translation Process !
         try {
-        	new RunIterator(currentLangs,translationData);
+        	new RunIterator(currentLangs,translationData,maxRowCount);
         	//System.out.println("Translations Done");
         	logger.info("Translations Done");
         }

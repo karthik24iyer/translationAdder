@@ -22,7 +22,7 @@ public class SheetReader {
     private String location = rb.getString("xcelLocation");
     private int count = 0, i=0;
     private String[] rowHeader = new String[16];
-    private String[][] sheetData = new String[50][16];
+    private String[][] sheetData = new String[100][16];
 	
     public String[] getLanguageHeader() {
     	return this.rowHeader;
@@ -36,7 +36,7 @@ public class SheetReader {
     	return this.sheetData;
     }
     
-    public void readSheet() throws IOException {  
+    public int readSheet() throws IOException {  
 
 		FileInputStream fis=new FileInputStream(new File(location));  
 		XSSFWorkbook wb=new XSSFWorkbook(fis);    
@@ -71,8 +71,9 @@ public class SheetReader {
 				i++;		
 			}  
 			count++; i=0;
-			System.out.println();  
+			//System.out.println();
 		}
 		wb.close();
+		return count;
 	}  
 }  
