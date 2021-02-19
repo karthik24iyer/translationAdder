@@ -20,7 +20,6 @@ public class App
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-        System.out.println();
         
         //Fetching listed languages in Excel Sheet
         currentLangs = sessionData.getRowHeaderData();
@@ -31,7 +30,7 @@ public class App
         //Starting Translation Process !
         try {
         	System.out.println("App is running");
-        	logger.info("App is running");
+        	logger.info("App is running\n");
         	new RunIterator(currentLangs,translationData,maxRowCount);
         	System.out.println("Translations done");
         	logger.info("Translations done");

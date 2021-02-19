@@ -28,9 +28,9 @@ public class RunIterator {
 	String ignoreFilesPath = rb.getString("ignoreFilesPath");
 	String getHCFileName = rb.getString("searchOnlyInFile");
 	
-	public RunIterator(String[] currentLangs, String[][] translationData) {
+	public RunIterator(String[] currentLangs, String[][] translationData, int maxRowCount) {
 				
-		for(int i=0;i<(translationData[i].length) && translationData[i][0]!=null;i++) {
+		for(int i=0;i<(translationData.length) && translationData[i][0]!=null;i++) {
 
 			// Fetching English translation for each corresponding word
 			this.currentEnWord = translationData[i][0].trim();
@@ -66,7 +66,6 @@ public class RunIterator {
 			}
 			standardEngFileNameList.clear();
 			engFileLocationList.clear();
-			System.out.println();
 		}
 	}
 	
