@@ -72,6 +72,8 @@ public class SearchProperty {
 			                		break;
 			                	case "n":
 			                		break;
+			                	default:
+			                		break;
 			                }
 			            }
 			            else {

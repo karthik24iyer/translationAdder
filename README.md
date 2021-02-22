@@ -17,7 +17,7 @@
 * Manual console prompt to ask before overwriting any existing translation (can be disabled in config file).  
 * log4j logging for all translations.  
 * All the languages for all regions -'au_AU', 'da_DK', 'de_DE', 'en_GB', 'es_ES', 'es_MX', 'fi_FI', 'fr_CA', 'fr_FR', 'it_IT', 'nl_NL', 'no_NO', 'pt_BR', 'sv_SE', 'zh_CN'.  
-* Only .xlsx file support at the moment. Although if original file formattings are correct, .csv and .xls files will also work after changing their format to .xlsx.  
+* File support for .xlsx and .xls at the moment. Although if original file formattings are correct, .csv files will also work after saved as .xlsx/.xls  
 --------------------------------------------------------------------------------------------------------------------------------------  
 
 ### How to install, run and check changes  

@@ -1,20 +1,30 @@
 package com.wellsfargo.coms.translationAdder;
 
 import java.io.IOException;
+import java.util.ResourceBundle;
+
 import org.apache.log4j.Logger;
-import com.wellsfargo.coms.translationAdder.Readers.SheetReader;
+
+import com.wellsfargo.coms.translationAdder.Readers.ExcelReader;
+import com.wellsfargo.coms.translationAdder.Misc.FetchFileFormat;
 
 public class App 
 {
     public static void main( String[] args )
     {
     	final Logger logger = Logger.getLogger(App.class.getName());
-    	String[] currentLangs;
+    	ResourceBundle rb = ResourceBundle.getBundle("config");
+        final String location = rb.getString("xcelLocation");
+        String[] currentLangs;
     	String[][] translationData;
     	int maxRowCount=0;
     	// Instantiating Excel Sheet Reader
-    	SheetReader sessionData = new SheetReader();
-        try {
+    	FetchFileFormat fff = new FetchFileFormat();
+        ExcelReader sessionData = fff.getExcelFileFormat(location);
+    	if(sessionData==null) {
+    		System.exit(0);
+    	}
+    	try {
         	// Reading data from whole sheet
         	maxRowCount=sessionData.readSheet();
 		} catch (IOException e) {

@@ -109,7 +109,7 @@ public class SearchText {
                         			else {
                             			//System.out.println(currentText + " is found in "+ file.getName()+ " at " + 
                             			//		"line "+lineNumber+"\t"+ "---- "+s.trim()+ " ----\n");
-                        				logger.info(currentText + " is found in "+ file.getName()+ " at " + 
+                        				logger.info("\""+currentText+"\"" + " is found in "+ file.getName()+ " at " + 
                             					"line "+lineNumber+"\t"+ "---- "+s.trim()+ " ----\n");
                         			}
                         			wordCount++;                                   
@@ -131,7 +131,7 @@ public class SearchText {
 	            } catch (IOException e) {
 	            	//System.out.print("Cant find " + currentText);
 	                //e.printStackTrace();
-	            	logger.error("Cant find " + currentText + ", ", e);
+	            	logger.error("Cant find " + "\""+currentText+"\"" + ", ", e);
 	            }
 	         }
 	        return fileNameList;
