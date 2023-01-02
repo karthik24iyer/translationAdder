@@ -5,7 +5,7 @@
 ### NOTE:  
 * Please refer "src\main\java\resources\config.properties" to change required settings, and "Translations.xlsx" to check the format of required input.  
 * There are two columns for English in excel file. First for existing word and second for a new translation in English. (If no changes to English, you can keep both columns identical)  
-* Refer this [link](https://github.com/karthik24iyer/TranslationAdderJarSupport) for any missing jar support ( which shouldn't be the case if you have coms imported)  
+* Refer this [link](https://github.com/karthik24iyer/TranslationAdderJarSupport) for any missing jar support  
 --------------------------------------------------------------------------------------------------------------------------------------  
 
 ### The following features are supported by this application   
@@ -25,7 +25,7 @@
 2. Use eclise Import -> Existing Maven projects
 3. Edit the required file paths in the given format in config.properties (configWF.properties can be used as template with all paths already given with my UID)
 4. Ensure proper formatting of excel is present. Refer Translation.xlsx in home directory
-5. Run the app as java application from App.java (translationAdder\src\main\java\com\wellsfargo\coms\translationAdder\App.java)
+5. Run the app as java application from App.java
 6. You can check the logs in logging.log in resources. You will see "Translations Done" in logs upon completion.
 7. Since changes to .properties file do not directly show in git staging, you can do a Team Synchronise and add them to index(staging) from Synchronise View.
 8. Its done. Refer debug solutions below for any issues.
