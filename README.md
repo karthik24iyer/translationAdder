@@ -1,6 +1,6 @@
 # translationAdder
 
-### This application will add translations from a given excel file (in a standard format) to respective .properties file in COMS
+### This application will add translations from a given excel file (in a standard format) to respective .properties file.
   
 ### NOTE:  
 * Please refer "src\main\java\resources\config.properties" to change required settings, and "Translations.xlsx" to check the format of required input.  
@@ -46,7 +46,7 @@ Happens if java version in classpath is inconsistent with our eclipse's java ver
 Solution: Please check java build path of this application.  
 
 * Unable to find dependency/plugin from pom.xml:  
-Solution: Although version of all dependencies have only been taken from what is used in COMS, if issue still persist, you can refer that dependency/plugin to any exisiting version in your .m2 repo.  
+Solution: Although version of all dependencies have only been taken from what is backward compatible, if issue still persist, you can refer that dependency/plugin to any exisiting version in your .m2 repo.  
 		  Alternatively you can use the jarSupport [link](https://github.com/karthik24iyer/TranslationAdderJarSupport) to get the required jars for this application  
    
 * Translation word from excel not found:  
@@ -66,7 +66,7 @@ Solution: Please ensure all language codes are as in given standard format above
 Happens if there are any floating characters outside the given rows/columns in excel file and hence SheetReader fails to read file.  
 Solution: Please ensure there aren't.  
   
-* Unable to find locations of this application, translations file, or COMS root.  
+* Unable to find locations of this application, translations file.
 Solution: Please refer config.properties for a giving the correct file path format.  
 --------------------------------------------------------------------------------------------------------------------------------------  
   
